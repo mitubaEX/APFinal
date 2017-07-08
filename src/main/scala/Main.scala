@@ -2,10 +2,10 @@ package advanced
 
 object Main{
   def main(args: Array[String]){
-    println(args(0))
-    new FileReaderFrequency(args).read
-    new FileReader(args).read
-    new FileReaderFilterSunny(args).read
-    new FileReaderFilterRain(args).read
+    new FileReaderDailySort(args).read // 4
+    new FileReaderFrequency(args).read // 3
+    new FileReader(args).read //1
+    new FileReaderFilterSunny(args).read //2
+    new FileReaderFilterRain(args).read //2
   }
 }
