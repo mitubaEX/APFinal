@@ -28,8 +28,8 @@ class FileReaderFrequency(filenameArray: Array[String]) extends FileReader(filen
   }
 
   override
-  def read: Unit = {
+  def read: String = {
     val temperatureList = getFrequencyMap(getMergedTemperatureStringList(filenameArray.toList))
-    temperatureList.foreach(n => println(n._1 + "," + n._2.toString))
+    temperatureList.map(n => n._1 + "," + n._2.toString).mkString("\n")
   }
 }

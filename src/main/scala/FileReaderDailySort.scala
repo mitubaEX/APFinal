@@ -29,12 +29,12 @@ class FileReaderDailySort(filenameArray: Array[String]) extends FileReader(filen
   }
 
   override
-  def read: Unit = {
+  def read: String = {
     val mergedTemperatureDailyList = getMergedTemperatureDailyList(filenameArray.toList)
     val sortedList = mergedTemperatureDailyList.sortWith(_._1 > _._1).sortWith(_._2 > _._2)
     val dailyMap = getDailyMap(sortedList)
     val filteredDailyList = getFilteredDailyList(sortedList, dailyMap.distinct)
     val calc = new CalcAveMaxMin
-    filteredDailyList.foreach(n => printf("%s-%s,%f,%f,%f\n", n(0)._1, n(0)._2, calc.getMaxDaily(n), calc.getMinDaily(n), calc.getAverageDaily(n)))
+    filteredDailyList.map(n => "%s-%s,%f,%f,%f".format(n(0)._1, n(0)._2, calc.getMaxDaily(n), calc.getMinDaily(n), calc.getAverageDaily(n))).mkString("\n")
   }
 }

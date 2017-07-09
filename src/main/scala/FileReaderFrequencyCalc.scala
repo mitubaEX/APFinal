@@ -41,15 +41,15 @@ class FileReaderFrequencyCalc(filenameArray: Array[String]) extends FileReader(f
   }
 
   override
-  def read: Unit = {
+  def read: String = {
     val mergedTemperatureStringList = getMergedTemperatureStringList(filenameArray.toList)
     val temperatureList = getFrequencyMap(mergedTemperatureStringList)
     val temperatureDataMapList = getFrequencyListMap(mergedTemperatureStringList)
     val calc = new CalcAveMaxMin
-    temperatureList.foreach(n => println(n._1 + "," + n._2.toString
+    temperatureList.map(n => n._1 + "," + n._2.toString
       + "," + "%f".format(calc.getMax(temperatureDataMapList.get(n._1).get))
       + "," + "%f".format(calc.getMin(temperatureDataMapList.get(n._1).get))
       + "," + "%f".format(calc.getAverage(temperatureDataMapList.get(n._1).get))
-    ))
+    ).mkString("\n")
   }
 }

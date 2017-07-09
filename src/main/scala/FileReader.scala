@@ -19,11 +19,12 @@ class FileReader(filenameArray: Array[String]) {
       case _ => List((0.0, 0.0, 0.0))
     }
 
-  def read: Unit ={
+  def read: String ={
     val temperatureList = getMergedTemperatureList(filenameArray.toList)
     val average = new CalcAveMaxMin().getAverage(temperatureList)
     val max = new CalcAveMaxMin().getMax(temperatureList)
     val min = new CalcAveMaxMin().getMin(temperatureList)
-    printf("%f,%f,%f\n", max, min, average)
+//    printf("%f,%f,%f\n", max, min, average)
+    "%f,%f,%f".format(max, min, average)
   }
 }
