@@ -6,8 +6,8 @@ package advanced
 class CalcAveMaxMin() {
   def getAverage(temperatureList: List[(Double, Double, Double)], sum: Double = 0.0, count: Double = 0.0): Double =
     temperatureList match {
-      case (head :: Nil) => (sum + head._1) / (count + 1)
-      case (head :: tail) => getAverage (tail, sum + head._1, count + 1)
+      case (head :: Nil) => (sum + head._1) / (count + 1.0)
+      case (head :: tail) => getAverage (tail, sum + head._1, count + 1.0)
       case _ => sum / count
     }
 
@@ -18,7 +18,7 @@ class CalcAveMaxMin() {
       case _ => max
     }
 
-  def getMin(temperatureList: List[(Double, Double, Double)], min: Double = 0.0): Double =
+  def getMin(temperatureList: List[(Double, Double, Double)], min: Double = Double.MaxValue): Double =
     temperatureList match {
       case (head :: Nil) => Math.min(min, head._3)
       case (head :: tail) => getMin (tail, Math.min(min, head._3))
@@ -27,8 +27,8 @@ class CalcAveMaxMin() {
 
   def getAverageDaily(temperatureList: List[(String, String, Double, Double, Double)], sum: Double = 0.0, count: Double = 0.0): Double =
     temperatureList match {
-      case (head :: Nil) => (sum + head._3) / (count + 1)
-      case (head :: tail) => getAverageDaily (tail, sum + head._3, count + 1)
+      case (head :: Nil) => (sum + head._3) / (count + 1.0)
+      case (head :: tail) => getAverageDaily (tail, sum + head._3, count + 1.0)
       case _ => sum / count
     }
 
@@ -39,7 +39,7 @@ class CalcAveMaxMin() {
       case _ => max
     }
 
-  def getMinDaily(temperatureList: List[(String, String, Double, Double, Double)], min: Double = 0.0): Double =
+  def getMinDaily(temperatureList: List[(String, String, Double, Double, Double)], min: Double = Double.MaxValue): Double =
     temperatureList match {
       case (head :: Nil) => Math.min(min, head._5)
       case (head :: tail) => getMinDaily (tail, Math.min(min, head._5))
