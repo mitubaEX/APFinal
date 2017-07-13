@@ -45,4 +45,25 @@ class CalcAveMaxMin() {
       case (head :: tail) => getMinDaily (tail, Math.min(min, head._5))
       case _ => min
     }
+
+  def getAverageWeek(temperatureList: List[(String, String, String, Double, Double, Double)], sum: Double = 0.0, count: Double = 0.0): Double =
+    temperatureList match {
+      case (head :: Nil) => (sum + head._4) / (count + 1.0)
+      case (head :: tail) => getAverageWeek (tail, sum + head._4, count + 1.0)
+      case _ => sum / count
+    }
+
+  def getMaxWeek(temperatureList: List[(String, String, String, Double, Double, Double)], max: Double = 0.0): Double =
+    temperatureList match {
+      case (head :: Nil) => Math.max(max, head._5)
+      case (head :: tail) => getMaxWeek (tail, Math.max(max, head._5))
+      case _ => max
+    }
+
+  def getMinWeek(temperatureList: List[(String ,String, String, Double, Double, Double)], min: Double = Double.MaxValue): Double =
+    temperatureList match {
+      case (head :: Nil) => Math.min(min, head._6)
+      case (head :: tail) => getMinWeek (tail, Math.min(min, head._6))
+      case _ => min
+    }
 }
